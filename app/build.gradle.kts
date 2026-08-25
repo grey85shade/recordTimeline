@@ -33,8 +33,13 @@ android {
     buildFeatures {
       compose = true
       aidl = false
-      buildConfig = false
+      buildConfig = true
       shaders = false
+    }
+
+    val dbPassphrase = project.properties["DB_PASSPHRASE"] ?: "default_dev_passphrase"
+    defaultConfig {
+        buildConfigField("String", "DB_PASSPHRASE", "\"$dbPassphrase\"")
     }
 
     packaging {

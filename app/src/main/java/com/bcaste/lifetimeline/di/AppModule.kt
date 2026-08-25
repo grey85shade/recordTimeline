@@ -6,6 +6,7 @@ import com.bcaste.lifetimeline.data.local.AppDatabase
 import com.bcaste.lifetimeline.data.local.dao.CategoryDao
 import com.bcaste.lifetimeline.data.local.dao.ProfileDao
 import com.bcaste.lifetimeline.data.local.dao.TimelineDao
+import com.bcaste.lifetimeline.BuildConfig
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -30,7 +31,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        val passphrase = "my_secure_passphrase".toByteArray(Charsets.UTF_8)
+        val passphrase = BuildConfig.DB_PASSPHRASE.toByteArray(Charsets.UTF_8)
         val supportFactory = SupportFactory(passphrase)
 
         return Room.databaseBuilder(
